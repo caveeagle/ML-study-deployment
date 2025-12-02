@@ -3,6 +3,7 @@
 # based on the form data received from Shiny.
 
 import pandas as pd
+from joblib import load
 
 mapping_dataset = "./data/postal_code_mapping.csv"
 df = pd.read_csv(   mapping_dataset, 
@@ -10,6 +11,9 @@ df = pd.read_csv(   mapping_dataset,
                     keep_default_na=True,
                     delimiter=","
                  )
+
+best_model_path = "./data/best_model.joblib"
+best_model = load(best_model_path)
 
 def calculate_price(data: dict) -> int:
     """
@@ -150,25 +154,28 @@ def calculate_price(data: dict) -> int:
     ####################################################
     ####################################################
     ####################################################
-
-
-
-
-
+    
+    #print(best_model.feature_names_in_)
+    #print(model_params)
+    
+    # Get feature names from the model (exact order used during training)
+    required_cols = list(best_model.feature_names_in_)
+    
+    # Build DataFrame exactly in this order
+    X = pd.DataFrame([[model_params[col] for col in required_cols]], columns=required_cols)
+    
+    # Predict
+    pred_price = best_model.predict(X)[0]
+    
     
     ####################################################
     ####################################################
     ####################################################
     #####################################################
     
-    # Example simple pricing formula (placeholder):
-    area = data.get("area") or 0
-    rooms = data.get("rooms") or 0
+    pred_price = int(round(pred_price,-2))
 
-    # Very basic example calculation:
-    price = 100_000 + area * 1500 + rooms * 10_000
-
-    return int(price)
+    return pred_price
 
 #####################################################
 #####################################################
