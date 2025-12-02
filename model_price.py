@@ -155,8 +155,14 @@ def calculate_price(data: dict) -> int:
     ####################################################
     ####################################################
     
-    #print(best_model.feature_names_in_)
-    #print(model_params)
+    if(0):
+        print(best_model.feature_names_in_)
+        
+    if(1):    
+        print('\n\nModel_Params:\n')
+        print(model_params)
+        print('\n\n')
+    
     
     # Get feature names from the model (exact order used during training)
     required_cols = list(best_model.feature_names_in_)
@@ -172,7 +178,7 @@ def calculate_price(data: dict) -> int:
     ####################################################
     ####################################################
     #####################################################
-    
+                 
     pred_price = int(round(pred_price,-2))
 
     return pred_price
@@ -181,14 +187,15 @@ def calculate_price(data: dict) -> int:
 #####################################################
 #####################################################
 
+if(0):
 
-data_empty_form = "{'postal_code': 9000, 'rooms': None, 'area': None, 'number_floors': None, 'bathrooms': 1, 'toilets': 1, 'equipped_kitchen': 'Fully equipped', 'property_type': '', 'property_subtype': '', 'has_swimming_pool': False, 'has_terrace': False, 'has_garden': False, 'has_garage': False, 'elevator': False, 'is_furnished': False, 'facades_number': None, 'build_year': None, 'cadastral_income': None, 'primary_energy_consumption': None}"
-
-data_full_form = "{'postal_code': 1030, 'rooms': 4, 'area': 1100, 'number_floors': 2, 'bathrooms': 1, 'toilets': 1, 'equipped_kitchen': 'Fully equipped', 'property_type': 'apartment', 'property_subtype': 'residence', 'has_swimming_pool': False, 'has_terrace': True, 'has_garden': False, 'has_garage': False, 'elevator': True, 'is_furnished': False, 'facades_number': 3, 'build_year': 2000, 'cadastral_income': None, 'primary_energy_consumption': None}"    
-
-#data_dict = eval(data_full_form)
-data_dict = eval(data_empty_form)
-
-result = calculate_price(data_dict)
-
-print('Result:',result)
+    data_empty_form = "{'postal_code': 9000, 'rooms': None, 'area': None, 'number_floors': None, 'bathrooms': 1, 'toilets': 1, 'equipped_kitchen': 'Fully equipped', 'property_type': '', 'property_subtype': '', 'has_swimming_pool': False, 'has_terrace': False, 'has_garden': False, 'has_garage': False, 'elevator': False, 'is_furnished': False, 'facades_number': None, 'build_year': None, 'cadastral_income': None, 'primary_energy_consumption': None}"
+    
+    data_full_form = "{'postal_code': 1030, 'rooms': 4, 'area': 1100, 'number_floors': 2, 'bathrooms': 1, 'toilets': 1, 'equipped_kitchen': 'Fully equipped', 'property_type': 'apartment', 'property_subtype': 'residence', 'has_swimming_pool': False, 'has_terrace': True, 'has_garden': False, 'has_garage': False, 'elevator': True, 'is_furnished': False, 'facades_number': 3, 'build_year': 2000, 'cadastral_income': None, 'primary_energy_consumption': None}"    
+    
+    #data_dict = eval(data_full_form)
+    data_dict = eval(data_empty_form)
+    
+    result = calculate_price(data_dict)
+    
+    print('Result:',result)

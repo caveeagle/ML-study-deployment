@@ -49,7 +49,6 @@ app_ui = ui.page_fluid(
                     "price",
                     label=None,
                     value=""
-
                 ),
                 style=(
                     "font-weight: bold;"
@@ -79,8 +78,10 @@ ui.tags.script("""
 
   el.readOnly = true;
   el.setAttribute('readonly', 'readonly');
-
-  //el.addEventListener('beforeinput', (e) => e.preventDefault());
+  el.style.border = "2px solid #0074D9";
+  el.style.fontWeight = "bold";
+  
+  el.style.transform = "translateY(8px)";
 })();
 """),
     
