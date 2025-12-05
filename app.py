@@ -3,14 +3,23 @@
 # - Clicking a region writes its `nouveau_PO` into the postal_code field (numeric input)
 
 from shiny import App, ui, render, reactive
-import geopandas as gpd
-
 from model_price import calculate_price
 
-# ---- Load shapefile and prepare GeoJSON ----
-# Expecting: ./shapefiles/belgium_map_simplified.shp with a 'nouveau_PO' property
-gdf = gpd.read_file("./shapefiles/belgium_map_simplified.shp")
-geojson_data = gdf.to_json()
+import json
+
+####################################################################################
+
+if(0):
+
+    with open('./data/belgium_map.geojson') as f:
+        geojson_data = json.load(f)
+
+if(1):
+    
+    import geopandas as gpd
+    gdf = gpd.read_file("./shapefiles/belgium_map_simplified.shp")
+    geojson_data = gdf.to_json()
+
 
 app_ui = ui.page_fluid(
 
